@@ -129,7 +129,7 @@ export const travelData = {
 };
 
 
-function loadData(travelData) {
+export function loadTravelDestinationData(travelData) {
     let destinationHTML = '';
     travelData.destinations.forEach((destinationDetails) => {
         const destinationName = destinationDetails.name;
@@ -152,4 +152,4 @@ function loadData(travelData) {
     });
     document.querySelector('.js-destination-details').innerHTML = destinationHTML;
 }
-loadData(travelData);
+
