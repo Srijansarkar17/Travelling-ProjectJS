@@ -1,0 +1,155 @@
+export const travelData = {
+ hero: {
+   title: "Discover Your Next Adventure",
+   subtitle: "Book flights, hotels, and holiday packages at unbeatable prices"
+ },
+
+ destinations: [
+   {
+     name: "Paris",
+     price: "₹45,000",
+     image: "https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=500&h=300&fit=crop",
+     alt: "Paris",
+     large: true
+   },
+   {
+     name: "Bali",
+     price: "₹25,000",
+     image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop",
+     alt: "Bali",
+     large: false
+   },
+   {
+     name: "London",
+     price: "₹55,000",
+     image: "https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?w=400&h=250&fit=crop",
+     alt: "London",
+     large: false
+   },
+   {
+     name: "Dubai",
+     price: "₹18,000",
+     image: "https://plus.unsplash.com/premium_photo-1694475168985-5574c927dd08?q=80&w=1471&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+     alt: "Dubai",
+     large: false
+   },
+   {
+     name: "Maldives",
+     price: "₹35,000",
+     image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=400&h=250&fit=crop",
+     alt: "Maldives",
+     large: false
+   }
+ ],
+
+ deals: [
+   {
+     badge: "FLAT 25% OFF",
+     image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=400&h=200&fit=crop",
+     alt: "Flight Deal",
+     title: "Domestic Flights",
+     description: "Book now and save big on your next domestic trip",
+     code: "Use code: FLY25"
+   },
+   {
+     badge: "UP TO 40% OFF",
+     image: "https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=400&h=200&fit=crop",
+     alt: "Hotel Deal",
+     title: "Hotel Bookings",
+     description: "Luxury stays at budget-friendly prices",
+     code: "Use code: HOTEL40"
+   },
+   {
+     badge: "SPECIAL PACKAGE",
+     image: "https://images.unsplash.com/photo-1488646953014-85cb44e25828?w=400&h=200&fit=crop",
+     alt: "Package Deal",
+     title: "Holiday Packages",
+     description: "Complete travel solutions with amazing discounts",
+     code: "Limited Time Offer"
+   }
+ ],
+
+ footer: {
+   brand: {
+     name: "TravelEase",
+     icon: "fas fa-plane",
+     description: "Your trusted travel partner for memorable journeys worldwide."
+   },
+   socialLinks: [
+     { platform: "facebook", icon: "fab fa-facebook", url: "#" },
+     { platform: "twitter", icon: "fab fa-twitter", url: "#" },
+     { platform: "instagram", icon: "fab fa-instagram", url: "#" },
+     { platform: "youtube", icon: "fab fa-youtube", url: "#" }
+   ],
+   sections: [
+     {
+       title: "Quick Links",
+       links: [
+         { text: "About Us", url: "#" },
+         { text: "Contact Us", url: "#" },
+         { text: "Careers", url: "#" },
+         { text: "Press", url: "#" }
+       ]
+     },
+     {
+       title: "Services",
+       links: [
+         { text: "Flight Booking", url: "#" },
+         { text: "Hotel Reservation", url: "#" },
+         { text: "Holiday Packages", url: "#" },
+         { text: "Travel Insurance", url: "#" }
+       ]
+     },
+     {
+       title: "Support",
+       links: [
+         { text: "Help Center", url: "#" },
+         { text: "Terms & Conditions", url: "#" },
+         { text: "Privacy Policy", url: "#" },
+         { text: "Refund Policy", url: "#" }
+       ]
+     }
+   ],
+   copyright: "© 2025 TravelEase. All rights reserved."
+ },
+
+ navigation: {
+   brand: {
+     name: "TravelEase",
+     icon: "fas fa-plane"
+   },
+   menuItems: [
+     { text: "Flights", href: "#flights" },
+     { text: "Hotels", href: "#hotels" },
+     { text: "Packages", href: "#packages" },
+     { text: "Trains", href: "#trains" },
+     { text: "Buses", href: "#buses" }
+   ]
+ }
+};
+
+
+function loadData(travelData) {
+    let destinationHTML = '';
+    travelData.destinations.forEach((destinationDetails) => {
+        const destinationName = destinationDetails.name;
+        const destinationPrice = destinationDetails.price;
+        const destinationImage = destinationDetails.image;
+        const destinationAlt = destinationDetails.alt;
+
+        let html = `
+                <div class="destination-card large">
+                    <img src="${destinationImage}" alt=${destinationAlt}>
+                    <div class="card-overlay">
+                        <h3>${destinationName}</h3>
+                        <p>Starting from Rs${destinationPrice}</p>
+                        <button class="card-btn">Explore</button>
+                    </div>
+                </div>
+        `;
+        console.log(destinationHTML);
+        destinationHTML+=html;
+    });
+    document.querySelector('.js-destination-details').innerHTML = destinationHTML;
+}
+loadData(travelData);
