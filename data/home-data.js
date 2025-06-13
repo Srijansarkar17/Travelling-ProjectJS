@@ -200,8 +200,10 @@ export function loadHeroPage() {
             btn.style.backgroundColor = "white";
             btn.style.color = "black";
             });
+            //only the active button will have the background blue with the code below
             button.style.backgroundColor = "#2663EB";
             button.style.color = "white";
+
             if(selectedTab === 'flights'){
               let html = `
                     <div class="trip-type">
@@ -348,6 +350,15 @@ export function loadHeroPage() {
             }
     })
     })
+    //I want that upon reload, the default html should show the flight section
+    const defaultTab = document.querySelector('.js-choice-button[data-tab="flights"]');
+    //the above line selects the class js-choice-button with data-tab =  "flights", the button below
+    //<button class="js-choice-button" data-tab="flights">Flights</button>
+    //then in the line below it checks, if defaultTab exists or not, if it exists, then it automatically clicks the button by deafult and executes the eventListener code
+
+    if(defaultTab){
+        defaultTab.click();
+    }
 }
     //         if (choice === 'flights') {
     //             let html = `
