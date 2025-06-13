@@ -301,7 +301,42 @@ export function loadHeroPage() {
         HeroHTML=html;
         document.querySelector('.js-display-container').innerHTML = HeroHTML;
      }
-     
+
+            else if(selectedTab === 'packages'){
+                let html = `
+                    <div class="search-form" id="packages-form">
+                    <div class="search-fields">
+                        <div class="field-group">
+                            <div class="input-field">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <input type="text" placeholder="From City">
+                                <small>Departure city</small>
+                            </div>
+                            <div class="input-field">
+                                <i class="fas fa-globe"></i>
+                                <input type="text" placeholder="To Destination">
+                                <small>Where to?</small>
+                            </div>
+                        </div>
+                        
+                        <div class="field-group">
+                            <div class="input-field">
+                                <i class="fas fa-calendar"></i>
+                                <input type="text" placeholder="Travel Date" value="15 Jun 2025">
+                                <small>Departure date</small>
+                            </div>
+                            <button class="search-btn">
+                                <i class="fas fa-search"></i>
+                                Search Packages
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+                `;
+            HeroHTML = html;
+            document.querySelector('.js-display-container').innerHTML = HeroHTML;
+            }
     })
     })
 }
