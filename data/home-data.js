@@ -192,10 +192,12 @@ export function loadHeroPage() {
 
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
-            const choice = button.dataset.tab;
-            if (choice === 'flights') {
-                let html = `
-        <div class="search-tabs">
+            const selectedTab = button.dataset.tab;
+            console.log(selectedTab);
+            if(selectedTab === 'flights'){
+              let html = `
+                <div class="search-form js-search-form" id="flights-form">
+                    <div class="search-tabs js-search-tabs">
                     <button class="tab-btn active js-choice-button" data-tab="flights">
                         <i class="fas fa-plane"></i> Flights
                     </button>
@@ -206,9 +208,6 @@ export function loadHeroPage() {
                         <i class="fas fa-suitcase"></i> Packages
                     </button>
                 </div>
-                
-                <!-- Flight Search Form -->
-                <div class="search-form js-search-form" id="flights-form">
                     <div class="trip-type">
                         <label class="radio-label">
                             <input type="radio" name="trip" value="oneway" checked>
@@ -269,87 +268,171 @@ export function loadHeroPage() {
                 </div>
         
         `;
-                HeroHTML += html;
-            }
-            else if (choice === 'hotels') {
-                html = `
-            <div class="search-form hidden" id="hotels-form">
-                    <div class="search-fields">
-                        <div class="field-group full-width">
-                            <div class="input-field">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" placeholder="City, Property name or Location">
-                                <small>Where do you want to stay?</small>
-                            </div>
-                        </div>
-                        
-                        <div class="field-group">
-                            <div class="input-field">
-                                <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Check-in" value="15 Jun 2025">
-                                <small>Monday</small>
-                            </div>
-                            <div class="input-field">
-                                <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Check-out" value="17 Jun 2025">
-                                <small>Wednesday</small>
-                            </div>
-                        </div>
-                        
-                        <div class="field-group">
-                            <div class="input-field">
-                                <i class="fas fa-users"></i>
-                                <input type="text" placeholder="Guests" value="2 Adults, 1 Room" readonly>
-                                <small>Guests & Rooms</small>
-                            </div>
-                            <button class="search-btn">
-                                <i class="fas fa-search"></i>
-                                Search Hotels
-                            </button>
-                        </div>
-                    </div>
-                </div>
-        `;
-                HeroHTML += html;
-            }
-            else if (choice === 'packages') {
-                html = `
-            <div class="search-form hidden" id="packages-form">
-                    <div class="search-fields">
-                        <div class="field-group">
-                            <div class="input-field">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" placeholder="From City">
-                                <small>Departure city</small>
-                            </div>
-                            <div class="input-field">
-                                <i class="fas fa-globe"></i>
-                                <input type="text" placeholder="To Destination">
-                                <small>Where to?</small>
-                            </div>
-                        </div>
-                        
-                        <div class="field-group">
-                            <div class="input-field">
-                                <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Travel Date" value="15 Jun 2025">
-                                <small>Departure date</small>
-                            </div>
-                            <button class="search-btn">
-                                <i class="fas fa-search"></i>
-                                Search Packages
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        `;
-         
-        }
-        HeroHTML += html;
-        console.log(choice)
-        });
-    });
-    console.log(HeroHTML);
-    document.querySelector('.js-search-container').innerHTML = HeroHTML;
+        HeroHTML+=html;
+        document.querySelector('.js-search-container').innerHTML = HeroHTML;
+     }
+     
+
+    })
+    })
 }
+    //         if (choice === 'flights') {
+    //             let html = `
+    //     <div class="search-tabs">
+    //                 <button class="tab-btn active js-choice-button" data-tab="flights">
+    //                     <i class="fas fa-plane"></i> Flights
+    //                 </button>
+    //                 <button class="tab-btn js-choice-button" data-tab="hotels">
+    //                     <i class="fas fa-bed"></i> Hotels
+    //                 </button>
+    //                 <button class="tab-btn js-choice-button" data-tab="packages">
+    //                     <i class="fas fa-suitcase"></i> Packages
+    //                 </button>
+    //             </div>
+                
+    //             <!-- Flight Search Form -->
+    //             <div class="search-form js-search-form" id="flights-form">
+    //                 <div class="trip-type">
+    //                     <label class="radio-label">
+    //                         <input type="radio" name="trip" value="oneway" checked>
+    //                         <span>One Way</span>
+    //                     </label>
+    //                     <label class="radio-label">
+    //                         <input type="radio" name="trip" value="roundtrip">
+    //                         <span>Round Trip</span>
+    //                     </label>
+    //                     <label class="radio-label">
+    //                         <input type="radio" name="trip" value="multicity">
+    //                         <span>Multi City</span>
+    //                     </label>
+    //                 </div>
+                    
+    //                 <div class="search-fields">
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-plane-departure"></i>
+    //                             <input type="text" placeholder="From" value="New Delhi">
+    //                             <small>DEL - Indira Gandhi Intl</small>
+    //                         </div>
+    //                         <button class="swap-btn">
+    //                             <i class="fas fa-exchange-alt"></i>
+    //                         </button>
+    //                         <div class="input-field">
+    //                             <i class="fas fa-plane-arrival"></i>
+    //                             <input type="text" placeholder="To" value="Mumbai">
+    //                             <small>BOM - Chhatrapati Shivaji</small>
+    //                         </div>
+    //                     </div>
+                        
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-calendar"></i>
+    //                             <input type="text" placeholder="Departure" value="15 Jun 2025">
+    //                             <small>Monday</small>
+    //                         </div>
+    //                         <div class="input-field return-field" style="opacity: 0.5;">
+    //                             <i class="fas fa-calendar"></i>
+    //                             <input type="text" placeholder="Return" disabled>
+    //                             <small>Select date</small>
+    //                         </div>
+    //                     </div>
+                        
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-users"></i>
+    //                             <input type="text" placeholder="Travellers" value="1 Adult" readonly>
+    //                             <small>Economy</small>
+    //                         </div>
+    //                         <button class="search-btn">
+    //                             <i class="fas fa-search"></i>
+    //                             Search Flights
+    //                         </button>
+    //                     </div>
+    //                 </div>
+    //             </div>
+        
+    //     `;
+    //             HeroHTML += html;
+    //         }
+    //         else if (choice === 'hotels') {
+    //             html = `
+    //         <div class="search-form hidden" id="hotels-form">
+    //                 <div class="search-fields">
+    //                     <div class="field-group full-width">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-map-marker-alt"></i>
+    //                             <input type="text" placeholder="City, Property name or Location">
+    //                             <small>Where do you want to stay?</small>
+    //                         </div>
+    //                     </div>
+                        
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-calendar"></i>
+    //                             <input type="text" placeholder="Check-in" value="15 Jun 2025">
+    //                             <small>Monday</small>
+    //                         </div>
+    //                         <div class="input-field">
+    //                             <i class="fas fa-calendar"></i>
+    //                             <input type="text" placeholder="Check-out" value="17 Jun 2025">
+    //                             <small>Wednesday</small>
+    //                         </div>
+    //                     </div>
+                        
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-users"></i>
+    //                             <input type="text" placeholder="Guests" value="2 Adults, 1 Room" readonly>
+    //                             <small>Guests & Rooms</small>
+    //                         </div>
+    //                         <button class="search-btn">
+    //                             <i class="fas fa-search"></i>
+    //                             Search Hotels
+    //                         </button>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //     `;
+    //             HeroHTML += html;
+    //         }
+    //         else if (choice === 'packages') {
+    //             html = `
+    //         <div class="search-form hidden" id="packages-form">
+    //                 <div class="search-fields">
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-map-marker-alt"></i>
+    //                             <input type="text" placeholder="From City">
+    //                             <small>Departure city</small>
+    //                         </div>
+    //                         <div class="input-field">
+    //                             <i class="fas fa-globe"></i>
+    //                             <input type="text" placeholder="To Destination">
+    //                             <small>Where to?</small>
+    //                         </div>
+    //                     </div>
+                        
+    //                     <div class="field-group">
+    //                         <div class="input-field">
+    //                             <i class="fas fa-calendar"></i>
+    //                             <input type="text" placeholder="Travel Date" value="15 Jun 2025">
+    //                             <small>Departure date</small>
+    //                         </div>
+    //                         <button class="search-btn">
+    //                             <i class="fas fa-search"></i>
+    //                             Search Packages
+    //                         </button>
+    //                     </div>
+    //                 </div>
+    //             </div>
+    //         </div>
+    //     `;
+         
+    //     }
+    //     HeroHTML += html;
+    //     console.log(choice)
+    //     });
+    // });
+    // console.log(HeroHTML);
+    // document.querySelector('.js-search-container').innerHTML = HeroHTML;
+        
