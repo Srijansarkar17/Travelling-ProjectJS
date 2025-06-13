@@ -194,6 +194,14 @@ export function loadHeroPage() {
         button.addEventListener('click', () => {
             const selectedTab = button.dataset.tab;
             console.log(selectedTab);
+
+            //Reseting the colors of all buttons
+            buttons.forEach((btn) => {
+            btn.style.backgroundColor = "white";
+            btn.style.color = "black";
+            });
+            button.style.backgroundColor = "#2663EB";
+            button.style.color = "white";
             if(selectedTab === 'flights'){
               let html = `
                     <div class="trip-type">
@@ -258,6 +266,7 @@ export function loadHeroPage() {
         `;
         HeroHTML=html;
         document.querySelector('.js-display-container').innerHTML = HeroHTML;
+        
      }
             else if(selectedTab === 'hotels'){
             let html = `
@@ -300,7 +309,7 @@ export function loadHeroPage() {
         `;
         HeroHTML=html;
         document.querySelector('.js-display-container').innerHTML = HeroHTML;
-     }
+        }
 
             else if(selectedTab === 'packages'){
                 let html = `
