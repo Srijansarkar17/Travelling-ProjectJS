@@ -226,12 +226,12 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-calendar"></i>
-                                <input id="departure-input" type="text" placeholder="Departure" value="15 Jun 2025">
+                                <input id="departure-date-input" type="text" placeholder="Departure" value="15 Jun 2025">
                                 <small>Monday</small>
                             </div>
                             <div class="input-field return-field" style="opacity: 0.5;">
                                 <i class="fas fa-calendar"></i>
-                                <input id="return-input" type="text" placeholder="Return" disabled>
+                                <input id="return-date-input" type="text" placeholder="Return">
                                 <small>Select date</small>
                             </div>
                         </div>
@@ -242,7 +242,7 @@ export function loadHeroPage() {
                                 <input id="travellers-input" type="text" placeholder="Travellers" value="1 Adult" readonly>
                                 <small>Economy</small>
                             </div>
-                            <button class="search-btn">
+                            <button class="search-btn js-search-button">
                                 <i class="fas fa-search"></i>
                                 Search Flights
                             </button>
@@ -253,6 +253,30 @@ export function loadHeroPage() {
         `;
         HeroHTML=html;
         document.querySelector('.js-display-container').innerHTML = HeroHTML;
+
+
+        //When you write JavaScript that accesses or modifies elements on the page (like input fields, buttons, etc.), you want to make sure the browser has fully loaded the HTML elements first.
+        //If you try to access DOM elements before they're available, your JavaScript might fail with errors like null is not an object.  ----> thats why DOMContentLoaded is used
+        document.addEventListener('DOMContentLoaded', () => { //DOMContentLoaded is an event in JavaScript that fires when the HTML of the page has been completely loaded and parsed, without waiting for stylesheets, images, or subframes to finish loading
+            const fromInput = document.getElementById("from-input");
+            const toInput = document.getElementById("to-input");
+            const departureDateInput = document.getElementById("departure-date-input");
+            const returnDateInput = document.getElementById("return-date-input");
+            const travellersInput = document.getElementById("travellers-input");
+
+            document.querySelector('.js-search-button')
+            .addEventListener('click', () => {
+                const flightData = {
+                    fromName: fromInput.value,
+                    toName: toInput.value,
+                    DepartureDate: departureDateInput.value,
+                    returnDate: returnDateInput.value,
+                    travellerNumber: travellersInput.value
+                };
+
+                console.log(flightData);
+            });
+        });
         
      }
             else if(selectedTab === 'hotels'){
