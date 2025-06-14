@@ -215,7 +215,7 @@ export function loadHeroPage() {
                                 <input id="from-input" type="text" placeholder="From" value="New Delhi">
                                 <small>DEL - Indira Gandhi Intl</small>
                             </div>
-                            <button class="swap-btn">
+                            <button class="swap-btn js-swap-btn">
                                 <i class="fas fa-exchange-alt"></i>
                             </button>
                             <div class="input-field">
@@ -262,11 +262,18 @@ export function loadHeroPage() {
         //When you write JavaScript that accesses or modifies elements on the page (like input fields, buttons, etc.), you want to make sure the browser has fully loaded the HTML elements first.
         //If you try to access DOM elements before they're available, your JavaScript might fail with errors like null is not an object.  ----> thats why DOMContentLoaded is used
         document.addEventListener('DOMContentLoaded', () => { //DOMContentLoaded is an event in JavaScript that fires when the HTML of the page has been completely loaded and parsed, without waiting for stylesheets, images, or subframes to finish loading
-            const fromInput = document.getElementById("from-input");
-            const toInput = document.getElementById("to-input");
+            let fromInput = document.getElementById("from-input");
+            let toInput = document.getElementById("to-input");
             const departureDateInput = document.getElementById("departure-date-input");
             const returnDateInput = document.getElementById("return-date-input");
             const travellersInput = document.getElementById("travellers-input");
+
+            document.querySelector('.js-swap-btn')
+                .addEventListener('click', () => {
+                    let temp = fromInput.value;
+                    fromInput.value = toInput.value;
+                    toInput.value = temp;
+                });
 
 
             document.querySelector('.js-search-button')
