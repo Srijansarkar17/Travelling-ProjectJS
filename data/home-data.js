@@ -1,3 +1,5 @@
+import { isReturnDateAfterDeparture } from '../scripts/utils/dayComparison.js';
+
 export const travelData = {
     hero: {
         title: "Discover Your Next Adventure",
@@ -243,6 +245,7 @@ export function loadHeroPage() {
                                 <input id="travellers-input" type="text" placeholder="Travellers" value="1 Adult" readonly>
                                 <small>Economy</small>
                             </div>
+
                             <button class="search-btn js-search-button">
                                 <i class="fas fa-search"></i>
                                 Search Flights
@@ -265,9 +268,12 @@ export function loadHeroPage() {
             const returnDateInput = document.getElementById("return-date-input");
             const travellersInput = document.getElementById("travellers-input");
 
+
             document.querySelector('.js-search-button')
             .addEventListener('click', () => {
-                const flightData = {
+                //checking if return date is after departure date using the function from dayComparison.js
+                if(isReturnDateAfterDeparture(departureDateInput.value, returnDateInput.value)){
+                    const flightData = {
                     fromName: fromInput.value,
                     toName: toInput.value,
                     DepartureDate: departureDateInput.value,
@@ -276,6 +282,11 @@ export function loadHeroPage() {
                 };
 
                 console.log(flightData);
+                }
+                else{
+                    alert('Return date must be after Departure Date');
+                }
+                
             });
         });
         
