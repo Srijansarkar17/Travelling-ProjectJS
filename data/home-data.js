@@ -206,26 +206,11 @@ export function loadHeroPage() {
 
             if(selectedTab === 'flights'){
               let html = `
-                    <div class="trip-type">
-                        <label class="radio-label">
-                            <input type="radio" name="trip" value="oneway" checked>
-                            <span>One Way</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="trip" value="roundtrip">
-                            <span>Round Trip</span>
-                        </label>
-                        <label class="radio-label">
-                            <input type="radio" name="trip" value="multicity">
-                            <span>Multi City</span>
-                        </label>
-                    </div>
-                    
                     <div class="search-fields">
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-plane-departure"></i>
-                                <input type="text" placeholder="From" value="New Delhi">
+                                <input id="from-input" type="text" placeholder="From" value="New Delhi">
                                 <small>DEL - Indira Gandhi Intl</small>
                             </div>
                             <button class="swap-btn">
@@ -233,7 +218,7 @@ export function loadHeroPage() {
                             </button>
                             <div class="input-field">
                                 <i class="fas fa-plane-arrival"></i>
-                                <input type="text" placeholder="To" value="Mumbai">
+                                <input id="to-input" type="text" placeholder="To" value="Mumbai">
                                 <small>BOM - Chhatrapati Shivaji</small>
                             </div>
                         </div>
@@ -241,12 +226,12 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Departure" value="15 Jun 2025">
+                                <input id="departure-input" type="text" placeholder="Departure" value="15 Jun 2025">
                                 <small>Monday</small>
                             </div>
                             <div class="input-field return-field" style="opacity: 0.5;">
                                 <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Return" disabled>
+                                <input id="return-input" type="text" placeholder="Return" disabled>
                                 <small>Select date</small>
                             </div>
                         </div>
@@ -254,7 +239,7 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-users"></i>
-                                <input type="text" placeholder="Travellers" value="1 Adult" readonly>
+                                <input id="travellers-input" type="text" placeholder="Travellers" value="1 Adult" readonly>
                                 <small>Economy</small>
                             </div>
                             <button class="search-btn">
