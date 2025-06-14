@@ -224,17 +224,18 @@ export function loadHeroPage() {
                         </div>
                         
                         <div class="field-group">
-                            <div class="input-field">
+                        <div class="input-field">
                                 <i class="fas fa-calendar"></i>
-                                <input id="departure-date-input" type="text" placeholder="Departure" value="15 Jun 2025">
-                                <small>Monday</small>
-                            </div>
-                            <div class="input-field return-field" style="opacity: 0.5;">
-                                <i class="fas fa-calendar"></i>
-                                <input id="return-date-input" type="text" placeholder="Return">
-                                <small>Select date</small>
+                                <input id="departure-date-input" type="date" value="2025-06-15">
+                            <small>Departure Date</small>
+                        </div>
+                            <div class="input-field return-field">
+                                    <i class="fas fa-calendar"></i>
+                                    <input id="return-date-input" type="date">
+                                <small>Return Date</small>
                             </div>
                         </div>
+
                         
                         <div class="field-group">
                             <div class="input-field">
