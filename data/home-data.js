@@ -199,15 +199,15 @@ export function loadHeroPage() {
 
             //Reseting the colors of all buttons
             buttons.forEach((btn) => {
-            btn.style.backgroundColor = "white";
-            btn.style.color = "black";
+                btn.style.backgroundColor = "white";
+                btn.style.color = "black";
             });
             //only the active button will have the background blue with the code below
             button.style.backgroundColor = "#2663EB";
             button.style.color = "white";
 
-            if(selectedTab === 'flights'){
-              let html = `
+            if (selectedTab === 'flights') {
+                let html = `
                     <div class="search-fields">
                         <div class="field-group">
                             <div class="input-field">
@@ -255,70 +255,68 @@ export function loadHeroPage() {
                 </div>
         
         `;
-        HeroHTML=html;
-        document.querySelector('.js-display-container').innerHTML = HeroHTML;
+                HeroHTML = html;
+                document.querySelector('.js-display-container').innerHTML = HeroHTML;
 
 
-        //When you write JavaScript that accesses or modifies elements on the page (like input fields, buttons, etc.), you want to make sure the browser has fully loaded the HTML elements first.
-        //If you try to access DOM elements before they're available, your JavaScript might fail with errors like null is not an object.  ----> thats why DOMContentLoaded is used
-        document.addEventListener('DOMContentLoaded', () => { //DOMContentLoaded is an event in JavaScript that fires when the HTML of the page has been completely loaded and parsed, without waiting for stylesheets, images, or subframes to finish loading
-            let fromInput = document.getElementById("from-input");
-            let toInput = document.getElementById("to-input");
-            const departureDateInput = document.getElementById("departure-date-input");
-            const returnDateInput = document.getElementById("return-date-input");
-            const travellersInput = document.getElementById("travellers-input");
+                //When you write JavaScript that accesses or modifies elements on the page (like input fields, buttons, etc.), you want to make sure the browser has fully loaded the HTML elements first.
+                //If you try to access DOM elements before they're available, your JavaScript might fail with errors like null is not an object.  ----> thats why DOMContentLoaded is used
 
-            document.querySelector('.js-swap-btn')
-                .addEventListener('click', () => {
-                    let temp = fromInput.value;
-                    fromInput.value = toInput.value;
-                    toInput.value = temp;
-                });
+                let fromInput = document.getElementById("from-input");
+                let toInput = document.getElementById("to-input");
+                const departureDateInput = document.getElementById("departure-date-input");
+                const returnDateInput = document.getElementById("return-date-input");
+                const travellersInput = document.getElementById("travellers-input");
+
+                document.querySelector('.js-swap-btn')
+                    .addEventListener('click', () => {
+                        let temp = fromInput.value;
+                        fromInput.value = toInput.value;
+                        toInput.value = temp;
+                    });
 
 
-            document.querySelector('.js-search-button')
-            .addEventListener('click', () => {
-                //checking if return date is after departure date using the function from dayComparison.js
-                if(isReturnDateAfterDeparture(departureDateInput.value, returnDateInput.value)){
-                    const flightData = {
-                    fromName: fromInput.value,
-                    toName: toInput.value,
-                    DepartureDate: departureDateInput.value,
-                    returnDate: returnDateInput.value,
-                    travellerNumber: travellersInput.value
-                };
+                document.querySelector('.js-search-button')
+                    .addEventListener('click', () => {
+                        //checking if return date is after departure date using the function from dayComparison.js
+                        if (isReturnDateAfterDeparture(departureDateInput.value, returnDateInput.value)) {
+                            const flightData = {
+                                fromName: fromInput.value,
+                                toName: toInput.value,
+                                DepartureDate: departureDateInput.value,
+                                returnDate: returnDateInput.value,
+                                travellerNumber: travellersInput.value
+                            };
 
-                console.log(flightData);
-                }
-                else{
-                    alert('Return date must be after Departure Date');
-                }
-                
-            });
-        });
-        
-     }
-            else if(selectedTab === 'hotels'){
-            let html = `
+                            console.log(flightData);
+                        }
+                        else {
+                            alert('Return date must be after Departure Date');
+                        }
+                    });
+
+            }
+            else if (selectedTab === 'hotels') {
+                let html = `
             <div class="search-form" id="hotels-form">
                     <div class="search-fields">
                         <div class="field-group full-width">
                             <div class="input-field">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" placeholder="City, Property name or Location">
+                                <input id="location-name" type="text" placeholder="City, Property name or Location">
                                 <small>Where do you want to stay?</small>
                             </div>
                         </div>
                         
                         <div class="field-group">
-                            <div class="input-field">
+                        <div class="input-field">
                                 <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Check-in" value="15 Jun 2025">
-                                <small>Monday</small>
-                            </div>
-                            <div class="input-field">
-                                <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Check-out" value="17 Jun 2025">
+                                <input id="checkin-date" type="date" placeholder="checkin" value="2025-06-15">
+                            <small>Monday</small>
+                        </div>
+                            <div class="input-field return-field">
+                                    <i class="fas fa-calendar"></i>
+                                    <input id="checkout-date" placeholder="checkout" type="date">
                                 <small>Wednesday</small>
                             </div>
                         </div>
@@ -326,10 +324,15 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-users"></i>
-                                <input type="text" placeholder="Guests" value="2 Adults, 1 Room" readonly>
-                                <small>Guests & Rooms</small>
+                                <input id="guest-numbers" type="text" placeholder="Guests">
+                                <small>Guests</small>
                             </div>
-                            <button class="search-btn">
+                            <div class="input-field">
+                                <i class="fas fa-users"></i>
+                                <input id="room-numbers" type="text" placeholder="Rooms">
+                                <small>Rooms</small>
+                            </div>
+                            <button class="search-btn js-search-hotel-btn">
                                 <i class="fas fa-search"></i>
                                 Search Hotels
                             </button>
@@ -337,11 +340,28 @@ export function loadHeroPage() {
                     </div>
                 </div>
         `;
-        HeroHTML=html;
-        document.querySelector('.js-display-container').innerHTML = HeroHTML;
-        }
+                HeroHTML = html;
+                document.querySelector('.js-display-container').innerHTML = HeroHTML;
+                const location = document.getElementById("location-name");
+                const checkinDate = document.getElementById("checkin-date");
+                const checkoutDate = document.getElementById("checkout-date");
+                const noGuests = document.getElementById("guest-numbers");
+                const noRooms = document.getElementById("room-numbers");
 
-            else if(selectedTab === 'packages'){
+                document.querySelector('.js-search-hotel-btn')
+                    .addEventListener('click', () => {
+                        const hotelData = {
+                            location: location.value,
+                            checkinDate: checkinDate.value,
+                            checkoutDate: checkoutDate.value,
+                            numberOfGuests: noGuests,
+                            numberOfRooms: noRooms
+                        };
+                        console.log(hotelData);
+                    });
+            }
+
+            else if (selectedTab === 'packages') {
                 let html = `
                     <div class="search-form" id="packages-form">
                     <div class="search-fields">
@@ -373,10 +393,10 @@ export function loadHeroPage() {
                 </div>
             </div>
                 `;
-            HeroHTML = html;
-            document.querySelector('.js-display-container').innerHTML = HeroHTML;
+                HeroHTML = html;
+                document.querySelector('.js-display-container').innerHTML = HeroHTML;
             }
-    })
+        })
     })
     //I want that upon reload, the default html should show the flight section
     const defaultTab = document.querySelector('.js-choice-button[data-tab="flights"]');
@@ -384,7 +404,7 @@ export function loadHeroPage() {
     //<button class="js-choice-button" data-tab="flights">Flights</button>
     //then in the line below it checks, if defaultTab exists or not, if it exists, then it automatically clicks the button by deafult and executes the eventListener code
 
-    if(defaultTab){
+    if (defaultTab) {
         defaultTab.click();
     }
 }   
