@@ -1,4 +1,5 @@
 import { isReturnDateAfterDeparture } from '../scripts/utils/dayComparison.js';
+import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
 export const travelData = {
     hero: {
@@ -375,12 +376,12 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-map-marker-alt"></i>
-                                <input type="text" placeholder="From City">
+                                <input id="departure-city" type="text" placeholder="From City">
                                 <small>Departure city</small>
                             </div>
                             <div class="input-field">
                                 <i class="fas fa-globe"></i>
-                                <input type="text" placeholder="To Destination">
+                                <input id="destination-city" type="text" placeholder="To Destination">
                                 <small>Where to?</small>
                             </div>
                         </div>
@@ -388,10 +389,10 @@ export function loadHeroPage() {
                         <div class="field-group">
                             <div class="input-field">
                                 <i class="fas fa-calendar"></i>
-                                <input type="text" placeholder="Travel Date" value="15 Jun 2025">
+                                <input id="departure-date" placeholder="Travel Date" value="2025-06-15" type="date">
                                 <small>Departure date</small>
                             </div>
-                            <button class="search-btn">
+                            <button class="search-btn js-search-packages-btn">
                                 <i class="fas fa-search"></i>
                                 Search Packages
                             </button>
@@ -402,6 +403,29 @@ export function loadHeroPage() {
                 `;
                 HeroHTML = html;
                 document.querySelector('.js-display-container').innerHTML = HeroHTML;
+
+                const departureCity = document.getElementById("departure-city");
+                const destinationCity = document.getElementById("destination-city");
+                const departureDate = document.getElementById("departure-date");
+                console.log(departureDate.value);
+                const today = dayjs();
+                const formattedDate = dayjs(today, 'D MMMM YYYY').format('YYYY-MM-DD');
+                console.log(formattedDate);
+
+                document.querySelector('.js-search-packages-btn')
+                    .addEventListener('click', () => {
+                        if(departureDate.value >= formattedDate){
+                            const packagesData = {
+                                departureCity: departureCity.value,
+                                destinationCity: destinationCity.value,
+                                departureDate: departureDate.value
+                            }
+                            console.log(packagesData);
+                        }
+                        else{
+                            alert("Departure Date should be greater than current date");
+                        }
+                    })
             }
         })
     })
