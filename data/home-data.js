@@ -261,39 +261,40 @@ export function loadHeroPage() {
 
                 //When you write JavaScript that accesses or modifies elements on the page (like input fields, buttons, etc.), you want to make sure the browser has fully loaded the HTML elements first.
                 //If you try to access DOM elements before they're available, your JavaScript might fail with errors like null is not an object.  ----> thats why DOMContentLoaded is used
+                
+                    let fromInput = document.getElementById("from-input");
+                    let toInput = document.getElementById("to-input");
+                    const departureDateInput = document.getElementById("departure-date-input");
+                    const returnDateInput = document.getElementById("return-date-input");
+                    const travellersInput = document.getElementById("travellers-input");
 
-                let fromInput = document.getElementById("from-input");
-                let toInput = document.getElementById("to-input");
-                const departureDateInput = document.getElementById("departure-date-input");
-                const returnDateInput = document.getElementById("return-date-input");
-                const travellersInput = document.getElementById("travellers-input");
-
-                document.querySelector('.js-swap-btn')
-                    .addEventListener('click', () => {
-                        let temp = fromInput.value;
-                        fromInput.value = toInput.value;
-                        toInput.value = temp;
-                    });
+                    document.querySelector('.js-swap-btn')
+                        .addEventListener('click', () => {
+                            let temp = fromInput.value;
+                            fromInput.value = toInput.value;
+                            toInput.value = temp;
+                        });
 
 
-                document.querySelector('.js-search-button')
-                    .addEventListener('click', () => {
-                        //checking if return date is after departure date using the function from dayComparison.js
-                        if (isReturnDateAfterDeparture(departureDateInput.value, returnDateInput.value)) {
-                            const flightData = {
-                                fromName: fromInput.value,
-                                toName: toInput.value,
-                                DepartureDate: departureDateInput.value,
-                                returnDate: returnDateInput.value,
-                                travellerNumber: travellersInput.value
-                            };
+                    document.querySelector('.js-search-button')
+                        .addEventListener('click', () => {
+                            //checking if return date is after departure date using the function from dayComparison.js
+                            if (isReturnDateAfterDeparture(departureDateInput.value, returnDateInput.value)) {
+                                const flightData = {
+                                    fromName: fromInput.value,
+                                    toName: toInput.value,
+                                    DepartureDate: departureDateInput.value,
+                                    returnDate: returnDateInput.value,
+                                    travellerNumber: travellersInput.value
+                                };
 
-                            console.log(flightData);
-                        }
-                        else {
-                            alert('Return date must be after Departure Date');
-                        }
-                    });
+                                console.log(flightData);
+                            }
+                            else {
+                                alert('Return date must be after Departure Date');
+                            }
+
+                });
 
             }
             else if (selectedTab === 'hotels') {
@@ -350,14 +351,20 @@ export function loadHeroPage() {
 
                 document.querySelector('.js-search-hotel-btn')
                     .addEventListener('click', () => {
-                        const hotelData = {
+                        if(isReturnDateAfterDeparture(checkinDate.value, checkoutDate.value)){
+                            const hotelData = {
                             location: location.value,
                             checkinDate: checkinDate.value,
                             checkoutDate: checkoutDate.value,
-                            numberOfGuests: noGuests,
-                            numberOfRooms: noRooms
+                            numberOfGuests: noGuests.value,
+                            numberOfRooms: noRooms.value
                         };
                         console.log(hotelData);
+                        }
+                        else{
+                            alert("Checkout Date must be after Checkin Date");
+                        }
+                        
                     });
             }
 
