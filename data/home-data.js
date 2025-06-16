@@ -1,6 +1,7 @@
 import { isReturnDateAfterDeparture } from '../scripts/utils/dayComparison.js';
 import dayjs from 'https://unpkg.com/supersimpledev@8.5.0/dayjs/esm/index.js';
 
+
 export const travelData = {
     hero: {
         title: "Discover Your Next Adventure",
@@ -190,6 +191,7 @@ export function loadDealsData(travelData) {
 
 
 
+
 export function loadHeroPage() {
     let HeroHTML = '';
     const buttons = document.querySelectorAll('.js-choice-button');
@@ -291,6 +293,12 @@ export function loadHeroPage() {
                                 };
 
                                 console.log(flightData);
+
+                                //passing the data to another html file using URL parameters
+                                const params = new URLSearchParams(); //create an empty URL parameter object
+                                params.set('flightData', JSON.stringify(flightData));
+                                window.location.href = `flights.html?${params.toString()}`;
+
                             }
                             else {
                                 alert('Return date must be after Departure Date');
@@ -362,6 +370,7 @@ export function loadHeroPage() {
                             numberOfRooms: noRooms.value
                         };
                         console.log(hotelData);
+                        return hotelData;
                         }
                         else{
                             alert("Checkout Date must be after Checkin Date");
@@ -422,6 +431,7 @@ export function loadHeroPage() {
                                 departureDate: departureDate.value
                             }
                             console.log(packagesData);
+                            return packagesData;
                         }
                         else{
                             alert("Departure Date should be greater than current date");
