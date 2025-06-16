@@ -162,7 +162,7 @@ export function loadHeroSection() {
         value: checkbox.value,
         label: checkbox.closest('label').textContent.trim(),
         id: checkbox.id
-}));
+    }));
 
     console.log(checkedData);
 }
