@@ -189,6 +189,7 @@ export function loadDealsData(travelData) {
 }
 
 
+
 export function loadHeroPage() {
     let HeroHTML = '';
     const buttons = document.querySelectorAll('.js-choice-button');
