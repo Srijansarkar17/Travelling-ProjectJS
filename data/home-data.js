@@ -429,7 +429,7 @@ export function loadHeroPage() {
                                 departureCity: departureCity.value,
                                 destinationCity: destinationCity.value,
                                 departureDate: departureDate.value
-                            }
+                            };
                             console.log(packagesData);
                             return packagesData;
                         }
