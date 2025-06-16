@@ -129,7 +129,7 @@ console.log(flightData);
 
 //Generating the HTML of the page
 
-function loadRouteSection() {
+export function loadRouteSection() {
     let RouteSectionHTML = '';
     const fromName = flightData.fromName;
     const toName = flightData.toName;
@@ -149,4 +149,21 @@ function loadRouteSection() {
     document.querySelector('.js-search-info').innerHTML = RouteSectionHTML;
 
 }
-loadRouteSection();
+
+export function loadHeroSection() {
+    //This is to get the data from checkedBoxes
+
+    document.querySelectorAll('input[type="radio"]').forEach((radio) => {
+        radio.addEventListener('change', loadHeroSection); //every time the checkbox is getting changed the hero section is getting loaded again
+    })
+
+    const checkedBoxes = document.querySelectorAll('input[type="radio"]:checked');
+    const checkedData = Array.from(checkedBoxes).map(checkbox => ({
+        value: checkbox.value,
+        label: checkbox.closest('label').textContent.trim(),
+        id: checkbox.id
+}));
+
+    console.log(checkedData);
+}
+

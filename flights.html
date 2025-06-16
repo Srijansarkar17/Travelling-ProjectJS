@@ -45,30 +45,19 @@
     <!-- Filters Section -->
     <section class="filters-section">
         <div class="container">
-            <div class="filters-container">
-                <div class="filter-group">
-                    <h4>Price Range</h4>
-                    <div class="price-range">
-                        <input type="range" min="5000" max="25000" value="15000" class="price-slider">
-                        <div class="price-labels">
-                            <span>₹5,000</span>
-                            <span>₹25,000</span>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="filter-group">
+            <div class="filters-container">                
+                <div class="filter-group js-airline-filter">
                     <h4>Airlines</h4>
-                    <div class="filter-options">
-                        <label><input type="checkbox" checked> All Airlines</label>
-                        <label><input type="checkbox"> IndiGo</label>
-                        <label><input type="checkbox"> Air India</label>
-                        <label><input type="checkbox"> SpiceJet</label>
-                        <label><input type="checkbox"> Vistara</label>
+                    <div class="filter-options js-filter-options">
+                        <label><input name="airline" id="all-airlines" type="radio" checked> All Airlines</label>
+                        <label><input name="airline" id="indigo" type="radio"> IndiGo</label>
+                        <label><input name="airline" id="air-india" type="radio"> Air India</label>
+                        <label><input name="airline" id="spicejet" type="radio"> SpiceJet</label>
+                        <label><input name="airline" id="vistara" type="radio"> Vistara</label>
                     </div>
                 </div>
                 
-                <div class="filter-group">
+                <div class="filter-group3">
                     <h4>Departure Time</h4>
                     <div class="time-filters">
                         <button class="time-btn active">All</button>
