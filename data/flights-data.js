@@ -163,11 +163,40 @@ export function loadHeroSection() {
         label: checkbox.closest('label').textContent.trim(),
         id: checkbox.id
     }));
+    /*
+    airline: "Air India",
+            airlineCode: "AI",
+            flightNumber: "AI 131",
+            status: "Delayed 15 min",
+            statusClass: "delayed",
+            departureTime: "09:30",
+            departureAirport: "DEL",
+            departureCity: "New Delhi",
+            duration: "2h 20m",
+            stops: "Non-stop",
+            arrivalTime: "11:50",
+            arrivalAirport: "BOM",
+            arrivalCity: "Mumbai",
+            price: 9120,
+            priceNote: "per adult"
+    */
     let ResultHTML = '';
     if(checkedData.some((data) => data.label === 'Air India')){ // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
         flightsPageData.flights.forEach((data) => {
             if(data.airline == 'Air India'){
                 const flightName = data.airline;
+                const flightNumber = data.flightNumber;
+                const status = data.status;
+                const departureTime = data.departureTime;
+                const departureAirport = data.departureAirport;
+                const departureCity = data.departureCity;
+                const duration = data.duration;
+                const stops = data.stops;
+                const arrivalTime = data.arrivalTime;
+                const arrivalAirport = data.arrivalAirport;
+                const arrivalCity = data.arrivalCity;
+                const price = data.price;
+                const priceNote = data.priceNote;
                 let html = `
                     <div class="flight-card">
                     <div class="flight-header">
@@ -175,42 +204,42 @@ export function loadHeroSection() {
                             <img src="" alt="${flightName}" class="airline-logo">
                             <div>
                                 <h4>${flightName}</h4>
-                                <span class="flight-number">6E 2135</span>
+                                <span class="flight-number">${flightNumber}</span>
                             </div>
                         </div>
                         <div class="flight-status">
-                            <span class="status-badge on-time">On Time</span>
+                            <span class="status-badge ${data.statusClass}">${status}</span>
                         </div>
                     </div>
                     
                     <div class="flight-details">
                         <div class="departure">
-                            <div class="time">06:00</div>
-                            <div class="airport">DEL</div>
-                            <div class="city">New Delhi</div>
+                            <div class="time">${departureTime}</div>
+                            <div class="airport">${departureAirport}</div>
+                            <div class="city">${departureCity}</div>
                         </div>
                         
                         <div class="flight-path">
-                            <div class="duration">2h 15m</div>
+                            <div class="duration">${duration}</div>
                             <div class="path-line">
                                 <div class="path-dot"></div>
                                 <div class="path-progress"></div>
                                 <div class="path-dot"></div>
                             </div>
-                            <div class="stops">Non-stop</div>
+                            <div class="stops">${stops}</div>
                         </div>
                         
                         <div class="arrival">
-                            <div class="time">08:15</div>
-                            <div class="airport">BOM</div>
-                            <div class="city">Mumbai</div>
+                            <div class="time">${arrivalTime}</div>
+                            <div class="airport">${arrivalAirport}</div>
+                            <div class="city">${arrivalCity}</div>
                         </div>
                     </div>
                     
                     <div class="flight-footer">
                         <div class="price-info">
-                            <div class="price">₹8,452</div>
-                            <div class="price-note">per adult</div>
+                            <div class="price">₹${price}</div>
+                            <div class="price-note">${priceNote}</div>
                         </div>
                         <button class="book-btn">Select Flight</button>
                     </div>
