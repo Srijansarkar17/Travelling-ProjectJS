@@ -163,6 +163,66 @@ export function loadHeroSection() {
         label: checkbox.closest('label').textContent.trim(),
         id: checkbox.id
     }));
+    let ResultHTML = '';
+    if(checkedData.some((data) => data.label === 'Air India')){ // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
+        flightsPageData.flights.forEach((data) => {
+            if(data.airline == 'Air India'){
+                const flightName = data.airline;
+                let html = `
+                    <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="airline-info">
+                            <img src="" alt="${flightName}" class="airline-logo">
+                            <div>
+                                <h4>${flightName}</h4>
+                                <span class="flight-number">6E 2135</span>
+                            </div>
+                        </div>
+                        <div class="flight-status">
+                            <span class="status-badge on-time">On Time</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details">
+                        <div class="departure">
+                            <div class="time">06:00</div>
+                            <div class="airport">DEL</div>
+                            <div class="city">New Delhi</div>
+                        </div>
+                        
+                        <div class="flight-path">
+                            <div class="duration">2h 15m</div>
+                            <div class="path-line">
+                                <div class="path-dot"></div>
+                                <div class="path-progress"></div>
+                                <div class="path-dot"></div>
+                            </div>
+                            <div class="stops">Non-stop</div>
+                        </div>
+                        
+                        <div class="arrival">
+                            <div class="time">08:15</div>
+                            <div class="airport">BOM</div>
+                            <div class="city">Mumbai</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-footer">
+                        <div class="price-info">
+                            <div class="price">₹8,452</div>
+                            <div class="price-note">per adult</div>
+                        </div>
+                        <button class="book-btn">Select Flight</button>
+                    </div>
+                </div>
+                `;
+                ResultHTML+=html;
+            }
+            console.log(ResultHTML);
+            document.querySelector('.js-flights-list').innerHTML = ResultHTML;
+        });
+        
+    }
 
     console.log(checkedData);
 }
