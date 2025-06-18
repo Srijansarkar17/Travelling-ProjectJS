@@ -85,7 +85,7 @@ const flightsPageData = {
             priceNote: "per adult"
         },
         {
-            airline: "Vistara",
+            airline: "Air India",
             airlineCode: "UK",
             flightNumber: "UK 995",
             status: "On Time",
@@ -163,6 +163,7 @@ export function loadHeroSection() {
         label: checkbox.closest('label').textContent.trim(),
         id: checkbox.id
     }));
+    console.log(checkedData);
     /*
     airline: "Air India",
             airlineCode: "AI",
@@ -180,25 +181,63 @@ export function loadHeroSection() {
             price: 9120,
             priceNote: "per adult"
     */
+    let flightName;
+    let flightNumber;
+    let status;
+    let departureAirport;
+    let departureTime;
+    let departureCity;
+    let duration;
+    let stops;
+    let arrivalTime;
+    let arrivalAirport;
+    let arrivalCity;
+    let price;
+    let priceNote;
+    let statusClass
     let ResultHTML = '';
-    if(checkedData.some((data) => data.label === 'Air India')){ // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
+    if (checkedData.some((data) => data.label === 'Air India')) { // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
         flightsPageData.flights.forEach((data) => {
-            if(data.airline == 'Air India'){
-                const flightName = data.airline;
-                const flightNumber = data.flightNumber;
-                const status = data.status;
-                const departureTime = data.departureTime;
-                const departureAirport = data.departureAirport;
-                const departureCity = data.departureCity;
-                const duration = data.duration;
-                const stops = data.stops;
-                const arrivalTime = data.arrivalTime;
-                const arrivalAirport = data.arrivalAirport;
-                const arrivalCity = data.arrivalCity;
-                const price = data.price;
-                const priceNote = data.priceNote;
-                let html = `
-                    <div class="flight-card">
+            if (data.airline == 'Air India') {
+                flightName = data.airline;
+                flightNumber = data.flightNumber;
+                status = data.status;
+                departureTime = data.departureTime;
+                departureAirport = data.departureAirport;
+                departureCity = data.departureCity;
+                duration = data.duration;
+                stops = data.stops;
+                arrivalTime = data.arrivalTime;
+                arrivalAirport = data.arrivalAirport;
+                arrivalCity = data.arrivalCity;
+                price = data.price;
+                priceNote = data.priceNote;
+            }
+            
+        });
+    }
+    else if(checkedData.some((data) => data.label === 'IndiGo')){
+        flightsPageData.flights.forEach((data) => {
+            if (data.airline == 'IndiGo') {
+                flightName = data.airline;
+                flightNumber = data.flightNumber;
+                status = data.status;
+                departureTime = data.departureTime;
+                departureAirport = data.departureAirport;
+                departureCity = data.departureCity;
+                duration = data.duration;
+                stops = data.stops;
+                arrivalTime = data.arrivalTime;
+                arrivalAirport = data.arrivalAirport;
+                arrivalCity = data.arrivalCity;
+                price = data.price;
+                priceNote = data.priceNote;
+                statusClass = data.statusClass;
+            }
+    });
+    }
+    let html = `
+                 <div class="flight-card">
                     <div class="flight-header">
                         <div class="airline-info">
                             <img src="" alt="${flightName}" class="airline-logo">
@@ -208,7 +247,7 @@ export function loadHeroSection() {
                             </div>
                         </div>
                         <div class="flight-status">
-                            <span class="status-badge ${data.statusClass}">${status}</span>
+                            <span class="status-badge ${statusClass}">${status}</span>
                         </div>
                     </div>
                     
@@ -245,14 +284,8 @@ export function loadHeroSection() {
                     </div>
                 </div>
                 `;
-                ResultHTML+=html;
-            }
+            ResultHTML += html;
+
             console.log(ResultHTML);
             document.querySelector('.js-flights-list').innerHTML = ResultHTML;
-        });
-        
-    }
-
-    console.log(checkedData);
 }
-
