@@ -181,111 +181,227 @@ export function loadHeroSection() {
             price: 9120,
             priceNote: "per adult"
     */
-    let flightName;
-    let flightNumber;
-    let status;
-    let departureAirport;
-    let departureTime;
-    let departureCity;
-    let duration;
-    let stops;
-    let arrivalTime;
-    let arrivalAirport;
-    let arrivalCity;
-    let price;
-    let priceNote;
-    let statusClass
     let ResultHTML = '';
-    if (checkedData.some((data) => data.label === 'Air India')) { // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
+    if (checkedData.some((data) => data.label === 'All Airlines')) { // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
+        flightsPageData.flights.forEach((data) => {
+                let html = `
+                 <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="airline-info">
+                            <img src="" alt="${data.airline}" class="airline-logo">
+                            <div>
+                                <h4>${data.airline}</h4>
+                                <span class="flight-number">${data.flightNumber}</span>
+                            </div>
+                        </div>
+                        <div class="flight-status">
+                            <span class="status-badge ${data.statusClass}">${data.status}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details">
+                        <div class="departure">
+                            <div class="time">${data.departureTime}</div>
+                            <div class="airport">${data.departureAirport}</div>
+                            <div class="city">${data.departureCity}</div>
+                        </div>
+                        
+                        <div class="flight-path">
+                            <div class="duration">${data.duration}</div>
+                            <div class="path-line">
+                                <div class="path-dot"></div>
+                                <div class="path-progress"></div>
+                                <div class="path-dot"></div>
+                            </div>
+                            <div class="stops">${data.stops}</div>
+                        </div>
+                        
+                        <div class="arrival">
+                            <div class="time">${data.arrivalTime}</div>
+                            <div class="airport">${data.arrivalAirport}</div>
+                            <div class="city">${data.arrivalCity}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-footer">
+                        <div class="price-info">
+                            <div class="price">₹${data.price}</div>
+                            <div class="price-note">${data.priceNote}</div>
+                        </div>
+                        <button class="book-btn">Select Flight</button>
+                    </div>
+                </div>
+                `;
+                ResultHTML+=html;
+            
+        });
+    }
+    else if (checkedData.some((data) => data.label === 'Air India')) { // This is checking: "Does any object inside the checkedData array have a label property equal to 'Air India'?
         flightsPageData.flights.forEach((data) => {
             if (data.airline == 'Air India') {
-                flightName = data.airline;
-                flightNumber = data.flightNumber;
-                status = data.status;
-                departureTime = data.departureTime;
-                departureAirport = data.departureAirport;
-                departureCity = data.departureCity;
-                duration = data.duration;
-                stops = data.stops;
-                arrivalTime = data.arrivalTime;
-                arrivalAirport = data.arrivalAirport;
-                arrivalCity = data.arrivalCity;
-                price = data.price;
-                priceNote = data.priceNote;
-            }
+                let html = `
+                 <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="airline-info">
+                            <img src="" alt="${data.airline}" class="airline-logo">
+                            <div>
+                                <h4>${data.airline}</h4>
+                                <span class="flight-number">${data.flightNumber}</span>
+                            </div>
+                        </div>
+                        <div class="flight-status">
+                            <span class="status-badge ${data.statusClass}">${data.status}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details">
+                        <div class="departure">
+                            <div class="time">${data.departureTime}</div>
+                            <div class="airport">${data.departureAirport}</div>
+                            <div class="city">${data.departureCity}</div>
+                        </div>
+                        
+                        <div class="flight-path">
+                            <div class="duration">${data.duration}</div>
+                            <div class="path-line">
+                                <div class="path-dot"></div>
+                                <div class="path-progress"></div>
+                                <div class="path-dot"></div>
+                            </div>
+                            <div class="stops">${data.stops}</div>
+                        </div>
+                        
+                        <div class="arrival">
+                            <div class="time">${data.arrivalTime}</div>
+                            <div class="airport">${data.arrivalAirport}</div>
+                            <div class="city">${data.arrivalCity}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-footer">
+                        <div class="price-info">
+                            <div class="price">₹${data.price}</div>
+                            <div class="price-note">${data.priceNote}</div>
+                        </div>
+                        <button class="book-btn">Select Flight</button>
+                    </div>
+                </div>
+                `;
+                ResultHTML+=html;
+            }  
             
         });
     }
     else if(checkedData.some((data) => data.label === 'IndiGo')){
         flightsPageData.flights.forEach((data) => {
             if (data.airline == 'IndiGo') {
-                flightName = data.airline;
-                flightNumber = data.flightNumber;
-                status = data.status;
-                departureTime = data.departureTime;
-                departureAirport = data.departureAirport;
-                departureCity = data.departureCity;
-                duration = data.duration;
-                stops = data.stops;
-                arrivalTime = data.arrivalTime;
-                arrivalAirport = data.arrivalAirport;
-                arrivalCity = data.arrivalCity;
-                price = data.price;
-                priceNote = data.priceNote;
-                statusClass = data.statusClass;
-            }
-    });
-    }
-    let html = `
+                let html = `
                  <div class="flight-card">
                     <div class="flight-header">
                         <div class="airline-info">
-                            <img src="" alt="${flightName}" class="airline-logo">
+                            <img src="" alt="${data.airline}" class="airline-logo">
                             <div>
-                                <h4>${flightName}</h4>
-                                <span class="flight-number">${flightNumber}</span>
+                                <h4>${data.airline}</h4>
+                                <span class="flight-number">${data.flightNumber}</span>
                             </div>
                         </div>
                         <div class="flight-status">
-                            <span class="status-badge ${statusClass}">${status}</span>
+                            <span class="status-badge ${data.statusClass}">${data.status}</span>
                         </div>
                     </div>
                     
                     <div class="flight-details">
                         <div class="departure">
-                            <div class="time">${departureTime}</div>
-                            <div class="airport">${departureAirport}</div>
-                            <div class="city">${departureCity}</div>
+                            <div class="time">${data.departureTime}</div>
+                            <div class="airport">${data.departureAirport}</div>
+                            <div class="city">${data.departureCity}</div>
                         </div>
                         
                         <div class="flight-path">
-                            <div class="duration">${duration}</div>
+                            <div class="duration">${data.duration}</div>
                             <div class="path-line">
                                 <div class="path-dot"></div>
                                 <div class="path-progress"></div>
                                 <div class="path-dot"></div>
                             </div>
-                            <div class="stops">${stops}</div>
+                            <div class="stops">${data.stops}</div>
                         </div>
                         
                         <div class="arrival">
-                            <div class="time">${arrivalTime}</div>
-                            <div class="airport">${arrivalAirport}</div>
-                            <div class="city">${arrivalCity}</div>
+                            <div class="time">${data.arrivalTime}</div>
+                            <div class="airport">${data.arrivalAirport}</div>
+                            <div class="city">${data.arrivalCity}</div>
                         </div>
                     </div>
                     
                     <div class="flight-footer">
                         <div class="price-info">
-                            <div class="price">₹${price}</div>
-                            <div class="price-note">${priceNote}</div>
+                            <div class="price">₹${data.price}</div>
+                            <div class="price-note">${data.priceNote}</div>
                         </div>
                         <button class="book-btn">Select Flight</button>
                     </div>
                 </div>
                 `;
-            ResultHTML += html;
-
+                ResultHTML += html;
+            }
+    });
+    }
+    else if(checkedData.some((data) => data.label === 'SpiceJet')){
+        flightsPageData.flights.forEach((data) => {
+            if (data.airline == 'SpiceJet') {
+                let html = `
+                 <div class="flight-card">
+                    <div class="flight-header">
+                        <div class="airline-info">
+                            <img src="" alt="${data.airline}" class="airline-logo">
+                            <div>
+                                <h4>${data.airline}</h4>
+                                <span class="flight-number">${data.flightNumber}</span>
+                            </div>
+                        </div>
+                        <div class="flight-status">
+                            <span class="status-badge ${data.statusClass}">${data.status}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-details">
+                        <div class="departure">
+                            <div class="time">${data.departureTime}</div>
+                            <div class="airport">${data.departureAirport}</div>
+                            <div class="city">${data.departureCity}</div>
+                        </div>
+                        
+                        <div class="flight-path">
+                            <div class="duration">${data.duration}</div>
+                            <div class="path-line">
+                                <div class="path-dot"></div>
+                                <div class="path-progress"></div>
+                                <div class="path-dot"></div>
+                            </div>
+                            <div class="stops">${data.stops}</div>
+                        </div>
+                        
+                        <div class="arrival">
+                            <div class="time">${data.arrivalTime}</div>
+                            <div class="airport">${data.arrivalAirport}</div>
+                            <div class="city">${data.arrivalCity}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="flight-footer">
+                        <div class="price-info">
+                            <div class="price">₹${data.price}</div>
+                            <div class="price-note">${data.priceNote}</div>
+                        </div>
+                        <button class="book-btn">Select Flight</button>
+                    </div>
+                </div>
+                `;
+                ResultHTML += html;
+            }
+    });
+    }
             console.log(ResultHTML);
             document.querySelector('.js-flights-list').innerHTML = ResultHTML;
 }
